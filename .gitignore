@@ -1,3 +1,5 @@
 node_modules
 elm-stuff
 bundle.js
+_build
+lib
