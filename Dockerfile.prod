@@ -7,6 +7,7 @@ RUN opam depext logic
 RUN opam install --deps-only logic
 
 COPY logic ./
+
 RUN sudo chown -R opam:nogroup ./
 RUN opam exec dune build @frontend
 
@@ -22,6 +23,7 @@ COPY --from=logic-builder /logic/_build/default/frontend.js src/frontend.js
 
 COPY frontend/dist dist
 COPY frontend/webpack.config.js frontend/.babelrc frontend/elm.json ./
+
 RUN npm run build
 
 

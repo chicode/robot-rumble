@@ -5,13 +5,12 @@ services:
     image: postgres:latest
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
     environment:
       - COOKIE=abc
       - NAME=robot
-    ports:
-      - 4369
-      - 9000
     volumes:
       - ./backend:/backend
       - static:/static
@@ -21,7 +20,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - 80
+      - 80:80
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - static:/static:ro
