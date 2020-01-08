@@ -10,12 +10,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    environment:
-      - MIX_ENV=prod
-      - COOKIE=abc
-      - NAME=robot
     volumes:
-      - ./backend:/backend
       - static:/static
     depends_on:
       - db
