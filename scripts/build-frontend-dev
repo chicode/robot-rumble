@@ -11,5 +11,15 @@ box() {
     echo "$hr"
 }
 
-box "Executing tests using sbt"
-sbt ++$TRAVIS_SCALA_VERSION test
+box "Building logic layer"
+pushd src/logic
+wasm-pack build frontend
+popd
+
+box "Building frontend site"
+pushd src/frontend
+yarn
+yarn build
+popd
+
+box "Done!"
