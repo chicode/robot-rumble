@@ -3,6 +3,8 @@
 set -e
 set -o pipefail
 
+cd "$(dirname $0)"/..
+
 box() {
     local text="$@"
     local hr=$(printf '+-%*s-+' "${#text}" | tr ' ' '-')
