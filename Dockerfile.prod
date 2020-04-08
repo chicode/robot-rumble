@@ -1,29 +1,24 @@
-FROM ocaml/opam2:latest AS logic-builder
+FROM rust:latest AS logic-builder
 WORKDIR /logic
 
-COPY src/logic/logic.opam ./
-RUN opam pin add -yn logic ./
-RUN opam depext logic
-RUN opam install --deps-only logic
 
 COPY src/logic ./
-
-RUN sudo chown -R opam:nogroup ./
-RUN opam exec dune build @frontend
+RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
+RUN wasm-pack build frontend
 
 
 FROM node:lts AS frontend-builder
 WORKDIR /frontend
 
 COPY src/frontend/package.json ./
-RUN npm install
+RUN yarn
 
 COPY src/frontend/src src
-COPY --from=logic-builder /logic/_build/default/frontend.js src/frontend.js
+COPY --from=logic-builder /logic/frontend/pkg logic
 
 COPY src/frontend/webpack.config.js src/frontend/.babelrc src/frontend/elm.json ./
 
-RUN NODE_ENV=production npm run build
+RUN NODE_ENV=production yarn build
 
 
 FROM hseeberger/scala-sbt:8u222_1.3.4_2.13.1
@@ -34,6 +29,7 @@ RUN sbt clean stage
 
 COPY --from=frontend-builder /frontend/dist /tmp/static
 
+RUN mkdir -p /static
 
 EXPOSE 9000
 CMD rm -rf /static/* && cp -r /tmp/static/* /static && \
