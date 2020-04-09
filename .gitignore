@@ -30,10 +30,10 @@ yarn-error.log*
 lerna-debug.log*
 
 /public
-/src/frontend/dist
-/src/frontend/node_modules
-/src/frontend/elm-stuff
-/src/logic/target
+**/dist
+**/node_modules
+**/elm-stuff
+**/target/
 
 # User-specific stuff
 .idea/**/workspace.xml
