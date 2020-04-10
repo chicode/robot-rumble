@@ -29,7 +29,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-/public
 **/dist
 **/node_modules
 **/elm-stuff
