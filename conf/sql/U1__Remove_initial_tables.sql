@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS matches;
+DROP TYPE IF EXISTS match_outcome;
+DROP TABLE IF EXISTS robots;
+DROP TABLE IF EXISTS users;
