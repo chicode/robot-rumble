@@ -1,8 +1,9 @@
 [package]
 name = "cli"
 version = "0.1.0"
-authors = ["Anton <antonoutkine@gmail.com>"]
+authors = ["Anton <antonoutkine@gmail.com>", "Noah <33094578+coolreader18@users.noreply.github.com>"]
 edition = "2018"
+license = "GPL-3.0"
 
 [dependencies]
 logic = { path = "../.." }
