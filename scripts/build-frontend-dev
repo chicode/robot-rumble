@@ -14,12 +14,12 @@ box() {
 }
 
 box "Building logic layer"
-pushd src/logic
-wasm-pack build frontend
+pushd logic/entrypoints/frontend
+wasm-pack build
 popd
 
 box "Building frontend site"
-pushd src/frontend
+pushd backend/src
 yarn
 yarn build
 popd
