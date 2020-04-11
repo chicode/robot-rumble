@@ -63,3 +63,4 @@ lerna-debug.log*
 
 # Modules
 **/.idea/**/modules
+robot.iml
